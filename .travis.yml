@@ -19,3 +19,15 @@ after_success:
   - docker push oniharnantyo/multi-nginx
   - docker push oniharnantyo/multi-server
   - docker push oniharnantyo/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "multi-react"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-005651531244"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
